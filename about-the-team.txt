@@ -1,4 +1,7 @@
 Tal Bachar:
-I am excited about this project since I did not get a change to work on my own project that
+I am excited about this project since I did not get a chance to work on my own project that
 involves several technologies at once. I a certain that after this project I will be much
 more confident in my skills as a programmer, and also learn some new skills relating to CS.
+Alexander Shmarkatyuk:
+This looks like a very promising project. Team looks good too. Hopefully we'll have fun and
+make something great.
