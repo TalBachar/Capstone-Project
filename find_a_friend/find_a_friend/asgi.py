@@ -1,5 +1,5 @@
 """
-ASGI config for adopt_a_friend project.
+ASGI config for find_a_friend project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'adopt_a_friend.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'find_a_friend.settings')
 
 application = get_asgi_application()
