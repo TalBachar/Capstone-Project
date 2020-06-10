@@ -56,7 +56,7 @@ ROOT_URLCONF = 'find_a_friend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['find_a_friend/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
