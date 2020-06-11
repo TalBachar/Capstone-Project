@@ -15,14 +15,34 @@
 
 <body>
   <header>
-    <!--top bar -->
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-      <a class="navbar-brand" href="">Find A Friend NYC </a>
-        <!--search bar -->
-      <form class="form-inline mt-2 mt-md-0" >
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" >
-        <button class="btn btn-outline-secondary" type="submit" >Search</button>
-      </form>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Find A Friend NYC</a>
+
+        <button class="navbar-toggler" type="button"
+          data-toggle="collapse" data-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse show" id="navbarCollapse" style="">
+          <form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+          </form>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Sign Up </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Log In </a>
+            </li>
+          </ul>
+
+        </div>
+
+      </nav>
+
       <!--navbar button  -->
       <button class="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
