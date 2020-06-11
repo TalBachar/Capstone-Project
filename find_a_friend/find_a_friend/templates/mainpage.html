@@ -8,23 +8,24 @@
   <meta name="author" content="">
   <title>Find A Friend NYC</title>
 
-  <!-- Bootstrap and CSS -->
+  <!-- Html, css and bootstrap-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 
 <body>
+ <!--header-->
   <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Find A Friend NYC</a>
-
+        <!--navbar button  -->
         <button class="navbar-toggler" type="button"
           data-toggle="collapse" data-target="#navbarCollapse"
           aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="navbar-collapse collapse show" id="navbarCollapse" style="">
+        <div class="navbar-collapse collapse" id="navbarCollapse" style="">
           <form class="form-inline mt-2 mt-md-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
@@ -32,33 +33,28 @@
 
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Sign Up </a>
+              <a class="nav-link" href="">Sign Up </a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">Log In </a>
+              <a class="nav-link" href="">Log In </a>
             </li>
           </ul>
-
         </div>
-
       </nav>
+    </header>
 
-      <!--navbar button  -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link" href="">Sign Up</a>
-          <a class="nav-item nav-link" href="">Log In</a>
-        </div>
-      </div>
-    </nav>
-  </header>
+<!--body  -->
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+    <div class = "container" >
+      {%block content%}
+      {%endblock%}
+    </div>
 
+<!-- fotter -->
   <footer class="text-muted">
     <div class="container text-center">
       <p>Capstone Summer 2020</p>
