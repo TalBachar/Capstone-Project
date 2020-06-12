@@ -1,2 +1,21 @@
 
 {% extends 'mainpage.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <h1>Finding a Friend... coming soon....!</h1>
+     {% load static %}
+    <title></title>
+  </head>
+  <body>
+
+    <img  src = "{% static 'pets.jpeg'%}"
+            style="width:1200px;height: 400px;"
+            class = "d-inline-block alighn-top" />
+
+  </body>
+</html>
+
+{% endblock %}
