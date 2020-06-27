@@ -1,0 +1,48 @@
+{% load static %}
+<!-- navbar -->
+<header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="{%url 'adoption'%}">Find A Friend NYC</a>
+      <!--navbar button html css and bootrap-->
+      <button class="navbar-toggler" type="button"
+        data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--search bar html css and bootrap-->
+      <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+        <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <!--signup/Login/Logout html css and bootrap and js -->
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <!-- TODO:
+            link to a new adoptin page in adoption folder.
+            user can fallow at clicking on item
+            fallow item apears on the top
+          -->
+            <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}" onclick="">Logout</a>
+            <form id="logout" method="POST" action="{% url 'logout' %}">
+              {% csrf_token %} <!--provides easy-to-use protection against Cross Site Request Forgeries-->
+              <input type="hidden" />
+            </form>
+          </li>
+        {% else %}
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="btn btn-outline-light my-2 my-sm-0" href="{%url 'signup'%}">Sign Up</a>
+            <span>...</span>
+          </li>
+          <li class="nav-item active">
+            <a class="btn btn-outline-light my-2 my-sm-0"  href= "{%url 'login'%}">  Log in</a>
+          </li>
+        </ul>
+        {% endif %}
+
+
+      </div>
+    </nav>
+  </header>
