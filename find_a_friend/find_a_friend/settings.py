@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'find_a_friend',
         'USER': 'postgres',
         'PASSWORD': config('DB_PASSWORD'),
-        'HOST': 'find-afriend.herokuapp.comgi', #
+        'HOST': 'find-afriend.herokuapp.com', #
         'PORT': '5432'
 
     }

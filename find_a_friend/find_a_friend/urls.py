@@ -8,5 +8,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('', include('search.urls')),
     #path('', include('pets.urls')),
+    path('privacypolicy', views.privacypolicy, name='privacypolicy'),
 
 ]
