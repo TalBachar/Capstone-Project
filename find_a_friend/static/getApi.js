@@ -1,6 +1,8 @@
 //.js  fetch images/name from petfinder APi
 
 // prepare Data key+secret
+'use strict';
+
 
 $(function () {
   console.log('Top Result!');
@@ -10,16 +12,15 @@ $(function () {
 function loadData() {
   $('form').submit(event => {
     event.preventDefault();
-    const text_search = $('#text_search').val();
-    const type = $('input[name="typeOfAnimal_rg"]:checked').val();
-    fetchAnimals(type, 'New York', text_search);
-    console.log(text_search);
-
+    const pet = $('#pet').val();
+    const breed = $('#breed').val();
+    fetchAnimals(pet, breed, 'NY');
   });
 }
 //fetch
-function fetchAnimals(type, zip, text_search) {
-  fetch(`https://api.petfinder.com/v2/animals?type=${type}&location=${zip}&status=adoptable&distance=25`, {
+function fetchAnimals(pet,breed,location) {
+  console.log(token);
+  fetch(`https://api.petfinder.com/v2/animals?type=${pet}&breed=${breed}&location=${location}&status=adoptable&distance=25`, {
     headers: {
       Authorization: `Bearer ${token.access_token}`
     }
@@ -34,17 +35,22 @@ function decodeData(getResponse) {
   errorHandling(getResponse);
   $('#printApi ul').html('');
   for(let i=0; i<getResponse.animals.length; i++) {
+    for(let j=0; j<getResponse.animals[i].photos.length; j++) {
      $('#printApi ul').append(`<li>
-     <h1>${getResponse.animals[i].name}</h1> <h4>${getResponse.animals[i].breeds.primary} - ${getResponse.animals[i].age}</h4>
-     <p><img src="${getResponse.animals[i].photos[0].small}">
-     ${getResponse.animals[i].description}</p>
+      <br>
+      <br>
+     <h1>${getResponse.animals[i].name}</h1>
+     <img src="${getResponse.animals[i].photos[j].small}" >
+     <h5><p>${getResponse.animals[i].breeds.primary} </p>
+     <p>${getResponse.animals[i].age} </p>
+     <p>${getResponse.animals[i].size}</p>
+     <p>${getResponse.animals[i].description}</p>
+     <a href="${getResponse.animals[i].url}" >Contact!</a>
+     </h5>
 
-     <a href="${getResponse.animals[i].url}" >More details</a>
-
-     </li><br>`);
-
-  }
-
+     </li>`);
+   }
+ }
 }
 //error handling
 function errorHandling(getResponse) {

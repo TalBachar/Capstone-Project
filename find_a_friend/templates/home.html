@@ -3,43 +3,38 @@
 {% block content %}
 <!-- main image-->
 <section class="home-bg" style="background-image: url({% static 'images/pets.jpg' %})">
-    <div class="row">
-        <div class="col"></div>
+    <div class="row justify-content-md-center">
+        <div class="col-sm-4">
             <br>
             <br>
             <br>
             <br>
             <br>
             <br>
-              <div class=" col-12 mt-0 mt-md-8">
-            <form id="pet-form ">
-                <div class="input-group search-box">
+            <form id="form">
+              <label for="title"> <h3>Your Friend is Waiting:</h3></label>
+              <br>
 
-                    <input type="text" id="text_search" class="form-control form-control-lg offset-md-4"type="text"
-                                                                                  name='pet' placeholder="Optional: Enter specific breed of animal">
-                        <div class="input-group-append">
-                          <button class="btn btn-dark offset-md-4" type="submit"><i class="fa fa-search" aria-hidden="true" ></i></button>
-                      </div>
-                </div>
-                <div class="container-fluid">
+             <div class="form-group"> <!-- bootstrap-->
+                 <label for="faf_type">Friend's Type:</label>
+                 <br>
+                 <select id="pet" class="form-control">
+                     <option value="dog">Dog</option>
+                     <option value="cat">Cat</option>
+                     <option value="rabbit">Rabbit</option>
+                     <option value="bird">Bird</option>
+                 </select>
+                 <br>
+                    <label for="faf_breed">Friend's Breed</label>
+                    <br>
+                    <input type="text" id="breed" class="form-control" placeholder="Optional">
+                    <br>
+                 <input type="submit" value="Find a Friend" class="btn btn-danger">
+             </div>
+          </div>
 
-                  <input name = "typeOfAnimal_rg" type="radio" id="typeOfAnimal" value="dog" class="offset-md-4" checked><label style="color: black;"> Dogs </label>
-                  <input name = "typeOfAnimal_rg" type="radio" id="typeOfAnimal" value="cat" ><label style="color: black;"> Cats </label>
-                  <input name = "typeOfAnimal_rg" type="radio" id="typeOfAnimal" value="rabbit" ><label style="color: black;"> Rabbits </label>
-                  <input name = "typeOfAnimal_rg" type="radio" id="typeOfAnimal" value="bird"><label style="color: black;"> Birds </label>
-
-                </div>
-            </form>
-            </div>
-            <div class="col-2 mt-2 mt-md-0">
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-        </div>
+        </form>
+    </div>
 </section>
 
 <section>
