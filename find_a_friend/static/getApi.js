@@ -35,7 +35,7 @@ function decodeData(getResponse) {
   errorHandling(getResponse);
   $('#printApi ul').html('');
   for(let i=0; i<getResponse.animals.length; i++) {
-    for(let j=0; j<getResponse.animals[i].photos.length; j++) {
+    for(let j=0; j<1; j++) {
      $('#printApi ul').append(`<li>
       <br>
       <br>
