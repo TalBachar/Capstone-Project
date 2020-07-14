@@ -4,26 +4,34 @@
 <!-- main image-->
 <section class="home-bg" style="background-image: url({% static 'images/pets.jpg' %})">
     <div class="row">
-        <div class="col">
+        <div class="col"></div>
             <br>
             <br>
             <br>
             <br>
             <br>
             <br>
-              <div class=" col-9 mt-2 mt-md-0">
-            <form id="pet-form">
+              <div class=" col-12 mt-0 mt-md-8">
+            <form id="pet-form ">
                 <div class="input-group search-box">
 
-                    <input type="text" id="pet" class="form-control form-control-lg offset-md-4"type="text" name='pet' placeholder="Search for pets" >
-                  <div class="input-group-append">
+                    <input type="text" id="text_search" class="form-control form-control-lg offset-md-4"type="text"
+                                                                                  name='pet' placeholder="Optional: Enter specific breed of animal">
+                        <div class="input-group-append">
+                          <button class="btn btn-dark offset-md-4" type="submit"><i class="fa fa-search" aria-hidden="true" ></i></button>
+                      </div>
+                </div>
+                <div class="container-fluid">
 
+                  <input name = "typeOfAnimal_rg" type="radio" id="typeOfAnimal" value="dog" class="offset-md-4" checked><label style="color: black;"> Dogs </label>
+                  <input name = "typeOfAnimal_rg" type="radio" id="typeOfAnimal" value="cat" ><label style="color: black;"> Cats </label>
+                  <input name = "typeOfAnimal_rg" type="radio" id="typeOfAnimal" value="rabbit" ><label style="color: black;"> Rabbits </label>
+                  <input name = "typeOfAnimal_rg" type="radio" id="typeOfAnimal" value="bird"><label style="color: black;"> Birds </label>
 
-                    <button class="btn btn-dark " type="submit"><i class="fa fa-search" aria-hidden="true" ></i></button>
                 </div>
             </form>
             </div>
-            <div class=" col-2 mt-2 mt-md-0">
+            <div class="col-2 mt-2 mt-md-0">
             </div>
             <br>
             <br>
@@ -32,7 +40,6 @@
             <br>
             <br>
         </div>
-    </div>
 </section>
 
 <section>
