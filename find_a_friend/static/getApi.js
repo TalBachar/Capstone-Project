@@ -5,7 +5,7 @@
 
 
 $(function () {
-  console.log('Top Result!');
+  console.log(token);
   loadData();
 })
 //load data
@@ -20,7 +20,7 @@ function loadData() {
 //fetch
 function fetchAnimals(pet,breed,location) {
   console.log(token);
-  fetch(`https://api.petfinder.com/v2/animals?type=${pet}&breed=${breed}&location=${location}&status=adoptable&distance=25`, {
+  fetch(`https://api.petfinder.com/v2/animals?type=${pet}&breed=${breed}&location=${location}&distance=25&limit=25`, {
     headers: {
       Authorization: `Bearer ${token.access_token}`
     }
@@ -33,36 +33,32 @@ function fetchAnimals(pet,breed,location) {
   //retrieved the API data as JSON and into the html//
 function decodeData(getResponse) {
   errorHandling(getResponse);
-  $('#printApi ul').html('');
+  $('#printApi').html('');
   for(let i=0; i<getResponse.animals.length; i++) {
-    for(let j=0; j<1; j++) {
-     $('#printApi ul').append(`<li>
-      <br>
-      <br>
-     <h1>${getResponse.animals[i].name}</h1>
-     <img src="${getResponse.animals[i].photos[j].small}" >
-     <h5><p>${getResponse.animals[i].breeds.primary} </p>
-     <p>${getResponse.animals[i].age} </p>
-     <p>${getResponse.animals[i].size}</p>
-     <p>${getResponse.animals[i].description}</p>
-     <a href="${getResponse.animals[i].url}" >Contact!</a>
-     </h5>
+     $('#printApi ').append(`
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="${getResponse.animals[i].photos[0].medium}" >
+        <div class="card-body">
+          <h5 class="card text-center bg-danger mb-3">${getResponse.animals[i].name}</h5>
+          <p class="text-center">${getResponse.animals[i].gender}</p>
+        </div>
+      </div>
+      `);
 
-     </li>`);
-   }
  }
 }
 //error handling
-function errorHandling(getResponse) {
-  console.log(getResponse);
-  if(!getResponse.animals) {
+function errorHandling(response) {
+  console.log(response);
+  if(!response.animals) {
     coutError("Error!");
     return
   }
-  if(getResponse.animals.length == 0) {
+  if(response.animals.length == 0) {
     coutError("nothing to show!");
     return
   }
+  return
 }
 
 function coutError(message) {
