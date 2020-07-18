@@ -36,13 +36,20 @@ function decodeData(getResponse) {
   $('#printApi').html('');
   for(let i=0; i<getResponse.animals.length; i++) {
      $('#printApi ').append(`
+
+  <div class="col-sm-4">
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="${getResponse.animals[i].photos[0].medium}" >
         <div class="card-body">
-          <h5 class="card text-center bg-danger mb-3">${getResponse.animals[i].name}</h5>
+          <h5 class="card text-center ">${getResponse.animals[i].name}</h5>
+          <p class="text-center">${getResponse.animals[i].breeds.primary}</p>
           <p class="text-center">${getResponse.animals[i].gender}</p>
+          <p class="text-center"> Contact: ${getResponse.animals[i].contact.phone}</p>
+          <h5 class="card text-center bg-danger mb-3"><a href="${getResponse.animals[i].url}" >More About!</a></h5>
         </div>
       </div>
+</div>
+
       `);
 
  }
