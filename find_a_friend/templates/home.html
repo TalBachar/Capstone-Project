@@ -5,12 +5,7 @@
 <section class="home-bg" style="background-image: url({% static 'images/pets.jpg' %})">
     <div class="row justify-content-md-center">
         <div class="col-sm-4">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+          
             <form id="form">
               <label for="title"> <h3>Your Friend is Waiting:</h3></label>
               <br>
@@ -22,7 +17,16 @@
                      <option value="dog">Dog</option>
                      <option value="cat">Cat</option>
                      <option value="rabbit">Rabbit</option>
-                     <option value="bird">Bird</option>
+                 </select>
+                 <br>
+                 <label for="faf_age">Friend's Age:</label>
+                 <br>
+                 <select id="age" class="form-control">
+                     <option value="">Optional</option>
+                     <option value="baby">Baby</option>
+                     <option value="young">Young</option>
+                     <option value="adult">Adult</option>
+                     <option value="senior">Senior</option>
                  </select>
                  <br>
                     <label for="faf_breed">Friend's Breed</label>
@@ -38,7 +42,7 @@
 </section>
 <section>
   <div>
-    <h2>Top Results</h2>
+    <h2>Search Results:</h2>
     <div class="row justify-content-md-center">
         <div class="row container" id="printApi">
       </div>

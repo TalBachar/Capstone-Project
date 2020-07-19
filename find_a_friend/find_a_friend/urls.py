@@ -9,5 +9,6 @@ urlpatterns = [
     path('', include('search.urls')),
     #path('', include('pets.urls')),
     path('privacypolicy', views.privacypolicy, name='privacypolicy'),
+    path('', include("django.contrib.auth.urls"))
 
 ]
