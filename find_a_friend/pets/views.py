@@ -1,5 +1,9 @@
-from django.http import Http404
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView
 
 # Create your views here.
+
+def adoption(request):
+    return render(request,'home.html')
+
+def privacypolicy(request):
+    return render(request,'privacypolicy.html')

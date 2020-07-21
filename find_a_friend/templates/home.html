@@ -5,7 +5,7 @@
 <section class="home-bg" style="background-image: url({% static 'images/pets.jpg' %})">
     <div class="row justify-content-md-center">
         <div class="col-sm-4">
-          
+
             <form id="form">
               <label for="title"> <h3>Your Friend is Waiting:</h3></label>
               <br>
@@ -35,17 +35,27 @@
                     <br>
                  <input type="submit" value="Find a Friend" class="btn btn-danger">
              </div>
-          </div>
+          </form>
+      </div>
 
-        </form>
+
     </div>
 </section>
 <section>
   <div>
     <h2>Search Results:</h2>
     <div class="row justify-content-md-center">
+        <div class="col3-sm-2">
+          <button id="loadLess" type="button" class="btn btn-danger"> < </button>
+          <button id="loadMore" type="button" class="btn btn-danger"> > </button>
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
         <div class="row container" id="printApi">
-      </div>
+        </div>
+      <br>
+      <br>
+    </div>
 </section>
 
 <section >

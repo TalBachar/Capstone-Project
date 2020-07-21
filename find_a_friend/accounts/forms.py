@@ -1,41 +1,28 @@
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .models import User
+from django.contrib.auth.models import User
+
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField()
+    username = forms.CharField(
+        label='Username',
+        required=True,
+        max_length=500
+    )
     password = forms.CharField(
-        label="Password",
-        strip=False,
-        widget=forms.PasswordInput,
+        label='Password',
+        required=True,
+        max_length=500,
+        widget=forms.PasswordInput()
     )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.user = None
-        self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
-        self.fields['password'].widget.attrs.update({'placeholder': 'Password'})
-
-    def clean(self, *args, **kwargs):
-        email = self.cleaned_data.get("email")
-        password = self.cleaned_data.get("password")
-
-        if email and password:
-            self.user = authenticate(email=email, password=password)
-
-            if self.user is None:
-                raise forms.ValidationError("User Does't Exist.")
-            if not self.user.check_password(password):
-                raise forms.ValidationError("Password Does't Match.")
-            if not self.user.is_active:
-                raise forms.ValidationError("User isn't Active.")
-
-        return super(LoginForm, self).clean(*args, **kwargs)
-
-    def get_user(self):
-        return self.user
+        self.fields['username'].widget.attrs.update({'placeholder': 'Enter Username'})
+        self.fields['password'].widget.attrs.update({'placeholder': 'Enter Password'})
 
 
 class SignupForm(UserCreationForm):

@@ -1,53 +1,58 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 
-<div class="container">
-  <div class="col-md-6 offset-3">
-    <hr />
-    <form method="POST" action="">
-      <br />
-      <br />
-      <h1>{{ title }}</h1>
-      {% csrf_token %} {% for field in form %}
-      <div class="form-group">
-        <label for="id_{{ field.name }}">{{ field.label }}</label>
-        {#{{ field.field.icon|safe }}#}
-        <input
-          type="{{ field.field.widget.input_type }}"
-          class="form-control"
-          name="{{ field.name }}"
-          id="id_{{ field.name }}"
-          placeholder="{{ field.field.widget.attrs.placeholder }}"
-        />
-      </div>
-      {% endfor %}
+    <div class="container">
+      <div class="col-md-6 offset-3">
+        <hr>
+        <form method="POST" action="">
+          <br>
+          <br>
+          <h1>{{ title }}</h1>
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="form-group">
+              <label for="id_{{ field.name }}">{{ field.label }}</label>
+                {#{{ field.field.icon|safe }}#}
+                <input type="{{ field.field.widget.input_type }}"
+                class="form-control"
+                name="{{ field.name }}"
+                id="id_{{ field.name }}"
+                placeholder="{{ field.field.widget.attrs.placeholder }}">
+            </div>
+          {% endfor %}
 
-      <br />
-      <input class="btn btn-danger" type="submit" value="{{ title }}" />&nbsp;
-      &nbsp; {% if request.path == "/accounts/login" %} Don't have an account?
-      <a href="{% url 'accounts:signup' %}"> Sign Up Here</a>
-      {% else %} Have an account?
-      <a href="{% url 'accounts:login' %}"> Login Here</a>
-      {% endif %}
-    </form>
-    {% if form.errors %} {% for field in form %} {% for error in field.errors %}
-    <div class="alert alert-danger alert-dismissable">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close"
-        >&times;</a
-      >
-      <strong>{{ error|escape }}</strong>
+          <br>
+          <input class="btn btn-danger" type="submit" value="Sign up">&nbsp; &nbsp;
+            {% if request.path == "/accounts/login" %}
+              Don't have an account
+              <a href="{% url 'accounts:signup' %}">SignUp Here</a>
+            {% else %}
+              Have an account
+              <a href="{% url 'accounts:login' %}">Login Here.</a>
+            {% endif %}
+
+        </form>
+          {% if form.errors %}
+            {% for field in form %}
+              {% for error in field.errors %}
+                <div class="alert alert-danger alert-dismissable">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>{{ error|escape }}</strong>
+                </div>
+              {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+              <div class="alert alert-danger alert-dismissable">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>{{ error|escape }}</strong>
+              </div>
+            {% endfor %}
+          {% endif %}
+          <br>
+          <br>
+          <br>
+        </div>
     </div>
-    {% endfor %} {% endfor %} {% for error in form.non_field_errors %}
-    <div class="alert alert-danger alert-dismissable">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close"
-        >&times;</a
-      >
-      <strong>{{ error|escape }}</strong>
-    </div>
-    {% endfor %} {% endif %}
-    <br />
-    <br />
-    <br />
-  </div>
-</div>
+
 
 {% endblock %}

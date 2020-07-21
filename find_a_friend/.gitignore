@@ -1,8 +1,9 @@
 
 # Created by https://www.toptal.com/developers/gitignore/api/django
 
-.DS_Store
+
 ### Django ###
+
 *.log
 *.pot
 *.pyc
@@ -12,3 +13,6 @@ db.sqlite3
 #media
 #static
 .env
+### Apple ###
+
+*.DS_Store

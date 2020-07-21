@@ -1,13 +1,12 @@
+from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages, auth
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, FormView, RedirectView, ListView, DetailView, UpdateView
-from .models import User
-from .forms import SignupForm, LoginForm
+from django.views.generic import CreateView, FormView, RedirectView
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.views import View
 
+from .forms import SignupForm, LoginForm
 
 class SignupClass(CreateView):
     model = User
@@ -16,7 +15,7 @@ class SignupClass(CreateView):
     success_url = '/login'
 
     extra_context = {
-        'title': 'Sign Up'
+        'title': 'Find A Friend NYC'
     }
 
     def dispatch(self, request, *args, **kwargs):
@@ -42,30 +41,50 @@ class SignupClass(CreateView):
 
 
 class LoginClass(FormView):
-    success_url = '/'
-    form_class = LoginForm
-    template_name = 'accounts/form.html'
 
-    extra_context = {
-        'title': 'Login'
-    }
+    http_method_names = ['get', 'post']
 
-    def dispatch(self, request, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            return HttpResponseRedirect(self.get_success_url())
-        return super().dispatch(self.request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('pets')
 
-    def get_form_class(self):
-        return self.form_class
+        context = {
+            'form': LoginForm()
+        }
 
-    def form_valid(self, form):
-        auth.login(self.request, form.get_user())
+        return render(request, 'accounts/login.html', context)
 
-        return HttpResponseRedirect(self.get_success_url())
+    def post(self, request, *args, **kwargs):
+        context = self.authorize_or_get_error(request)
 
-    def form_invalid(self, form):
-        return self.render_to_response(self.get_context_data(form=form))
+        if request.user.is_authenticated:
+            return redirect('pets')
+        else:
+            return render(request, 'accounts/login.html', context)
 
+    def authorize_or_get_error(self, request):
+        data = {}
+
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            cd = form.cleaned_data
+
+            user = authenticate(
+                username=cd['username'],
+                password=cd['password']
+            )
+
+            if user is not None:
+                login(request, user)
+                return data
+            else:
+                data['error'] = 'Username or Poassword is Incorrect!'
+        else:
+            data['error'] = 'User not registered'
+
+        data['form'] = form
+        return data
 
 class LogoutClass(RedirectView):
     url = '/'
