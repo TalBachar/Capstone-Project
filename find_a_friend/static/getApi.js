@@ -50,7 +50,9 @@ function decodeData(getResponse) {
       <div class="col-sm-4">
         <div class="card" style="width: 300px;">
         <a href="${getResponse.animals[i].url}">
-          <img class="card-img-top" src="${getResponse.animals[i].photos[0].medium}">
+          <div class="card "  style="height: 400x;">
+            <img class="card-img-top" style="height: 300px;" src="${getResponse.animals[i].photos[0].medium}">
+          </div>
           </a>
           <div class="card-body">
             <h3 class="card text-center text-danger font-weight-bold ">${getResponse.animals[i].name}</h3>
@@ -58,8 +60,9 @@ function decodeData(getResponse) {
             <p class="text-center">${getResponse.animals[i].gender}</p>
             <p class="text-center">${getResponse.animals[i].age}</p>
             <form action="${getResponse.animals[i].url}" class="text-center">
+            <br>
               <input type="submit" class="btn btn-danger" value="More info about ${getResponse.animals[i].name}" />
-          </form>
+            </form>
         </div>
       </div>
     </div>

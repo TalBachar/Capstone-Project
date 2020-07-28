@@ -21,8 +21,8 @@ class LoginForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.user = None
-        self.fields['username'].widget.attrs.update({'placeholder': 'Enter Username'})
-        self.fields['password'].widget.attrs.update({'placeholder': 'Enter Password'})
+        self.fields['username'].widget.attrs.update({'placeholder': 'Username'})
+        self.fields['password'].widget.attrs.update({'placeholder': 'Password'})
 
 
 class SignupForm(UserCreationForm):
@@ -34,7 +34,6 @@ class SignupForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['first_name'].icon = '<span class="input-field-icon"><i class="fas fa-envelope"></i></span>'
         self.fields['first_name'].widget.attrs.update({'placeholder': 'First Name'})
         self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
         self.fields['username'].widget.attrs.update({'placeholder': 'Username'})
@@ -67,3 +66,14 @@ class SignupForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class ProfileForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["first_name"].widget.attrs.update({'placeholder': 'Enter first name'})
+        self.fields["last_name"].widget.attrs.update({'placeholder': 'Enter last name'})
+
+    class Meta:
+        model = User
+        fields = ["first_name", "last_name"]

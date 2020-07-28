@@ -4,49 +4,39 @@
 {% endblock %}
 
 {% block content %}
+<section class="home-bg" style="background-image: url({% static '' %})">
+	<div class="row justify-content-md-center">
+		<div class="col-sm-4">
+			<label for="title"> <h3>Find A Friend NYC</h3></label>
 
-    <section class="home-bg" ">
-    	<div class="row justify-content-md-center">
-        <div class="container">
-          <div class="col-md-6 offset-3">
-    				<label for="title"> <h3>Find A Friend NYC</h3></label>
-    				<div class="form-group">
-              {% if error %}
-                  <div class="form-group">
-                      <span>Username:</span>
-                      <ul>
-                          <li>{{ error }}</li>
-                      </ul>
-                  </div>
-              {% endif %}
-    				</div>
-    				<div class="form-group">
-              <form method="POST">
-                  <div class="form-group">
-                      <div class="form-group">
-                          {% csrf_token %}
-                          {% for field in form %}
-                            <div class="form-group">
-                              <label for="id_{{ field.name }}">{{ field.label }}</label>
-                                {#{{ field.field.icon|safe }}#}
-                                <input type="{{ field.field.widget.input_type }}"
-                                class="form-control"
-                                name="{{ field.name }}"
-                                id="id_{{ field.name }}"
-                                placeholder="{{ field.field.widget.attrs.placeholder }}">
-                            </div>
-                          {% endfor %}
-                      </div>
-                      <br>
-                      <button type="submit" class="btn btn-danger">Log in</button>
-                  </div>
-              </form>
-          </div>
-          <div class="form-group">Don't have an account? <a href="{% url 'accounts:signup' %}">Sign up</a></div>
-    			</div>
-          </div>
-    			<br>
+			{% if error %}
+			<div class="alert alert-danger alert-dismissable">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>{{ error|escape }}</strong>
+			</div>
+			{% endif %}
 
-    	</div>
-    	</section>
+
+			<form method="POST">
+				{% csrf_token %}
+				{% for field in form %}
+				<div class="form-group">
+					<label for="id_{{ field.name }}">{{ field.label }}</label>
+					{#{{ field.field.icon|safe }}#}
+					<input type="{{ field.field.widget.input_type }}"
+					class="form-control"
+					name="{{ field.name }}"
+					id="id_{{ field.name }}"
+					placeholder="{{ field.field.widget.attrs.placeholder }}">
+				</div>
+				{% endfor %}
+				<br>
+				<button type="submit" class="btn btn-danger">Log in</button>
+			</form>
+
+			<div class="form-group">Don't have an account? <a href="{% url 'accounts:signup' %}">Sign up</a></div>
+
+		</div>
+	</div>
+</section>
 {% endblock %}

@@ -1,17 +1,21 @@
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages, auth
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
-from django.views.generic import CreateView, FormView, RedirectView
+from django.shortcuts import render, redirect, get_object_or_404
+# Create your views here.
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, FormView, RedirectView, ListView, DetailView, UpdateView
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-from django.views import View
 
-from .forms import SignupForm, LoginForm
+
+from .forms import SignupForm, LoginForm, ProfileForm
 
 class SignupClass(CreateView):
     model = User
     form_class = SignupForm
-    template_name = 'accounts/form.html'
+    template_name = 'accounts/signup.html'
     success_url = '/login'
 
     extra_context = {
@@ -37,7 +41,7 @@ class SignupClass(CreateView):
             user.save()
             return redirect('accounts:login')
         else:
-            return render(request, 'accounts/form.html', {'form': user_form})
+            return render(request, 'accounts/signup.html', {'form': user_form})
 
 
 class LoginClass(FormView):
@@ -91,5 +95,39 @@ class LogoutClass(RedirectView):
 
     def get(self, request, *args, **kwargs):
         auth.logout(request)
-        messages.success(request, 'You are now logged out')
+        messages.success(request, 'You are logged out')
         return super(LogoutClass, self).get(request, *args, **kwargs)
+
+
+class Profile(UpdateView):
+    model = User
+    template_name = "accounts/profile.html"
+    context_object_name = "user"
+    form_class = ProfileForm
+    success_url = reverse_lazy("accounts:profile")
+
+    @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(self.request, *args, **kwargs)
+
+    def get_initial(self):
+        return {"first_name": self.request.user.first_name, "last_name": self.request.user.last_name}
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(self.model, pk=self.request.user.pk)
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+class Favorites(ListView):
+    model = User
+    template_name = 'accounts/favorites.html'
+    context_object_name = 'favorites'
+
+    @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(self.request, *args, **kwargs)

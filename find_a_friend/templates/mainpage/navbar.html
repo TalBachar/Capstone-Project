@@ -1,37 +1,73 @@
 {% load static %}
 <!-- navbar -->
 <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand offset-1" href="{%url 'pets'%}">Find A Friend NYC</a>
-      <!--navbar button html css and bootrap-->
-      <button class="navbar-toggler" type="button"
-        data-toggle="collapse" data-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!--search bar html css and bootrap-->
-      <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+	<nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark">
+		<a class="text-light bg-dark navbar-brand offset-1" href="{%url 'pets'%}">Find A Friend NYC</a>
+		<!--navbar button html css and bootrap-->
+		<button class="navbar-toggler" type="button"
+		data-toggle="collapse" data-target="#navbarCollapse"
+		aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<!--search bar html css and bootrap-->
 
-          <div class=" col-9 mt-2 mt-md-0">
-          </div>
-        <!--signup/Login/Logout html css and bootrap and js -->
-        {% if user.is_authenticated %}
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <!-- TODO: fallow or watchlist-->
-            <a href="{% url 'accounts:logout' %}" class="btn btn-light">Logout</a>
-              {% csrf_token %} <!--provides easy-to-use protection against Cross Site Request Forgeries-->
+	<div class="navbar-collapse collapse" id="navbarCollapse" style="">
 
-          </li>
-        {% else %}
-        <span class="navbar-nav"></span>
-          <div class="navbar-nav btn-group">
-            <a href="{% url 'accounts:login' %}" class="btn btn-light">Login</a>
-            <a href="{% url 'accounts:signup' %}" class="btn btn-danger">Sign Up</a>
-          </div>
-        {% endif %}
+		<div class=" col-9 mt-2 mt-md-0">
+		</div>
+		<!--signup/Login/Logout html css and bootrap and js -->
+		{% if user.is_authenticated %}
+
+		<div class="dropdown">
+			<div class="dropdown-profile">
+				<div class="perfil-image float-left">
+					<img src="{% static 'images/placeholder.png' %}" alt=""
+					class="img-fluid">
+				</div>
+				<div class="profile-details">
+					<div class="user-name text-light bg-dark">
+						{{ request.user.first_name }}
+						{{ request.user.last_name }}
+					</div>
+				</div>
+			</div>
+
+			<div class="dropdown-content">
+				<ul class="profile-dropdown-menu">
+					<li class="dropdown-title">
+						<i class=""></i> Profile
+
+					</li>
+					<li class="dropdown-item">
+						<a href="{% url 'accounts:favorites' %}">
+							<i class="fa fa-heart"></i> Favorites
+						</a>
+					</li>
+					<li class="dropdown-item">
+						<a href="{% url 'accounts:profile' %}">
+							<i class="fa fa-cogs"></i> Settings
+						</a>
+					</li>
+
+					<li class="dropdown-item">
+						<a href="{% url 'accounts:logout' %}">
+							<i class="fa fa-sign-out"></i> Logout
+						</a>
+						{% csrf_token %} <!--provides easy-to-use protection against Cross Site Request Forgeries-->
+
+					</li>
+
+				</div>
+			</div>
+			{% else %}
+			<span class="navbar-nav"></span>
+			<div class="navbar-nav btn-group">
+				<a href="{% url 'accounts:login' %}" class="btn btn-light">Login</a>
+				<a href="{% url 'accounts:signup' %}" class="btn btn-danger">Sign Up</a>
+			</div>
+			{% endif %}
 
 
-      </div>
-    </nav>
+		</div>
+	</nav>
 </header>
