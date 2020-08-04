@@ -4,7 +4,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 
-
 class LoginForm(forms.Form):
     username = forms.CharField(
         label='Username',
@@ -38,7 +37,7 @@ class SignupForm(UserCreationForm):
         self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
         self.fields['username'].widget.attrs.update({'placeholder': 'Username'})
         self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
-        self.fields['password1'].widget.attrs.update({'placeholder': 'password'})
+        self.fields['password1'].widget.attrs.update({'placeholder': 'Password'})
         self.fields['password2'].widget.attrs.update({'placeholder': 'Confirm password'})
 
     class Meta:
