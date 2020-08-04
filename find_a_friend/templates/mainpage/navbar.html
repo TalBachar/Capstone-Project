@@ -12,53 +12,30 @@
 	<!--search bar html css and bootrap-->
 
 	<div class="navbar-collapse collapse" id="navbarCollapse" style="">
+		<div class="container d-flex justify-content-between">
+			<!--signup/Login/Logout html css and bootrap and js -->
+			{% if user.is_authenticated %}
 
-		<div class=" col-9 mt-2 mt-md-0">
-		</div>
-		<!--signup/Login/Logout html css and bootrap and js -->
-		{% if user.is_authenticated %}
+			<li class="dropdown-item">
+				<a href="{% url 'accounts:profile_update' %}">
+					<i class=""></i> Update Profile
+				</a>
+			</li>
+			<li class="dropdown-item">
+				<a href="{% url 'accounts:myprofile' user.username %}">
+					<i class=""></i> Search
+				</a>
+			</li>
 
-		<div class="dropdown">
-			<div class="dropdown-profile">
-				<div class="perfil-image float-left">
-					<img src="{% static 'images/placeholder.png' %}" alt=""
-					class="img-fluid">
-				</div>
-				<div class="profile-details">
-					<div class="user-name text-light bg-dark">
-						{{ request.user.first_name }}
-						{{ request.user.last_name }}
-					</div>
-				</div>
-			</div>
 
-			<div class="dropdown-content">
-				<ul class="profile-dropdown-menu">
-					<li class="dropdown-title">
-						<i class=""></i> Profile
+			<li class="dropdown-item">
+				<a href="{% url 'accounts:logout' %}">
+					<i class="fa fa-sign-out"></i> Logout
+				</a>
+				{% csrf_token %} <!--provides easy-to-use protection against Cross Site Request Forgeries-->
 
-					</li>
-					<li class="dropdown-item">
-						<a href="{% url 'accounts:favorites' %}">
-							<i class="fa fa-heart"></i> Favorites
-						</a>
-					</li>
-					<li class="dropdown-item">
-						<a href="{% url 'accounts:profile' %}">
-							<i class="fa fa-cogs"></i> Settings
-						</a>
-					</li>
+			</li>
 
-					<li class="dropdown-item">
-						<a href="{% url 'accounts:logout' %}">
-							<i class="fa fa-sign-out"></i> Logout
-						</a>
-						{% csrf_token %} <!--provides easy-to-use protection against Cross Site Request Forgeries-->
-
-					</li>
-
-				</div>
-			</div>
 			{% else %}
 			<span class="navbar-nav"></span>
 			<div class="navbar-nav btn-group">
