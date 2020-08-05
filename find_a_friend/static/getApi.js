@@ -27,7 +27,7 @@ function loadData() {
 function fetchAnimals(pet, breed, location, age, page) {
   console.log(token);
   fetch(
-    `https://api.petfinder.com/v2/animals?type=${pet}&breed=${breed}&age=${age}&location=${location}&status=adoptable&distance=25&page=${page}&limit=15&sort=recent`, // add ${page}
+    `https://api.petfinder.com/v2/animals?type=${pet}&breed=${breed}&age=${age}&location=${location}&status=adoptable&distance=25&page=${page}&limit=6&sort=recent`, // add ${page}
     {
       headers: {
         Authorization: `Bearer ${token.access_token}`,

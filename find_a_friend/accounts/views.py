@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
+from django.views.generic import ListView, RedirectView
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
@@ -46,6 +46,15 @@ def profile_update(request):
         'pet_form': pet_form
     }
     return render(request, 'accounts/edit.html', context)
+
+class LogoutView(RedirectView):
+    url = '/'
+
+    def get(self, request, *args, **kwargs):
+        auth.logout(request)
+        messages.success(request, 'You are logged out')
+        return super(LogoutView, self).get(request, *args, **kwargs)
+
 
 class ProfileHome(ListView):
     model = User

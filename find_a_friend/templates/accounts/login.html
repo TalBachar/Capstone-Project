@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block content %}
-<section class="home-bg" style="background-image: url({% static '' %})">
+<section class="home-bg" style="background-image: url({% static 'images/pets.jpg' %})">
 	<div class="row justify-content-md-center">
 		<div class="col-sm-4">
 			<label for="title"> <h3>Find A Friend NYC</h3></label>
@@ -30,7 +30,7 @@
 					placeholder="{{ field.field.widget.attrs.placeholder }}">
 				</div>
 				{% endfor %}
-				<br>
+				<br />
 				<button type="submit" class="btn btn-danger">Log in</button>
 			</form>
 

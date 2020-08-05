@@ -12,24 +12,18 @@
 	<!--search bar html css and bootrap-->
 
 	<div class="navbar-collapse collapse" id="navbarCollapse" style="">
-		<div class="container d-flex justify-content-between">
+		<div class="container d-flex justify-content-between bg-dark">
 			<!--signup/Login/Logout html css and bootrap and js -->
 			{% if user.is_authenticated %}
 
-			<li class="dropdown-item">
-				<a href="{% url 'accounts:profile_update' %}" style="color:white">
-					<i class=""></i> Set Alerts
-				</a>
+			<li class="dropdown-item bg-dark">
+				<a href="{% url 'accounts:profile_update' %}" class="btn btn-light">Set Alerts</a>
 			</li>
-			<li class="dropdown-item">
-				<a href="{% url 'accounts:myprofile' user.username %}" style="color:white">
-					<i class=""></i> My Profile
-				</a>
+			<li class="dropdown-item bg-dark">
+				<a href="{% url 'accounts:myprofile' user.username %}"class="btn btn-light">My Profile</a>
 			</li>
-
-
-			<li class="dropdown-item">
-				<a href="{% url 'accounts:logout' %}" style="color:white">
+			<li class="dropdown-item bg-dark">
+				<a href="{% url 'accounts:logout' %}"  class="btn btn-danger">
 					<i class="fa fa-sign-out"></i> Logout
 				</a>
 				{% csrf_token %} <!--provides easy-to-use protection against Cross Site Request Forgeries-->
