@@ -17,19 +17,19 @@
 			{% if user.is_authenticated %}
 
 			<li class="dropdown-item">
-				<a href="{% url 'accounts:profile_update' %}">
-					<i class=""></i> Update Profile
+				<a href="{% url 'accounts:profile_update' %}" style="color:white">
+					<i class=""></i> Set Alerts
 				</a>
 			</li>
 			<li class="dropdown-item">
-				<a href="{% url 'accounts:myprofile' user.username %}">
-					<i class=""></i> Search
+				<a href="{% url 'accounts:myprofile' user.username %}" style="color:white">
+					<i class=""></i> My Profile
 				</a>
 			</li>
 
 
 			<li class="dropdown-item">
-				<a href="{% url 'accounts:logout' %}">
+				<a href="{% url 'accounts:logout' %}" style="color:white">
 					<i class="fa fa-sign-out"></i> Logout
 				</a>
 				{% csrf_token %} <!--provides easy-to-use protection against Cross Site Request Forgeries-->

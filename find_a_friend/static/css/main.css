@@ -3,13 +3,12 @@
 */
 
 .home-bg {
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 170px 0 130px;
-    color: Black;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 170px 0 130px;
+  color: Black;
 }
-
 
 .dropdown {
   position: relative;
@@ -17,40 +16,33 @@
 }
 
 .profile-dropdown-menu {
-
-    margin: 0;
-    padding: 0;
-    padding-top: 10px;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
+  list-style: none;
 }
 
 .dropdown-title {
-	text-align: center;
+  text-align: center;
 }
 
 .dropdown-profile .perfil-image img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid #f2f3f5;
-
-
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #f2f3f5;
 }
-
 
 .dropdown-profile .profile-details {
-    padding-left: 50px;
+  padding-left: 50px;
 }
-
-
-
 
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
   min-width: 250px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -61,8 +53,14 @@
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}

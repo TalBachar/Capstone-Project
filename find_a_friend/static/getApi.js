@@ -5,8 +5,8 @@
 
 var pet;
 var breed;
-var age=0;
-var page=0;
+var age = 0;
+var page = 0;
 
 $(function () {
   console.log(token);
@@ -19,7 +19,7 @@ function loadData() {
     pet = $("#pet").val();
     breed = $("#breed").val();
     age = $("#age").val();
-    page=1;
+    page = 3;
     fetchAnimals(pet, breed, "10020", age, page);
   });
 }
@@ -27,7 +27,7 @@ function loadData() {
 function fetchAnimals(pet, breed, location, age, page) {
   console.log(token);
   fetch(
-    `https://api.petfinder.com/v2/animals?type=${pet}&breed=${breed}&age=${age}&location=${location}&status=adoptable&distance=25&page=${page}&limit=10`, // add ${page}
+    `https://api.petfinder.com/v2/animals?type=${pet}&breed=${breed}&age=${age}&location=${location}&status=adoptable&distance=25&page=${page}&limit=15&sort=recent`, // add ${page}
     {
       headers: {
         Authorization: `Bearer ${token.access_token}`,
@@ -43,7 +43,7 @@ function fetchAnimals(pet, breed, location, age, page) {
 function decodeData(getResponse) {
   errorHandling(getResponse);
   $("#printApi").html("");
-  '<p class="text-center">${getResponse.animals.page}</p>'
+  ('<p class="text-center">${getResponse.animals.page}</p>');
   for (let i = 0; i < getResponse.animals.length; i++) {
     $("#printApi ").append(`
 
@@ -61,28 +61,30 @@ function decodeData(getResponse) {
             <p class="text-center">${getResponse.animals[i].age}</p>
             <form action="${getResponse.animals[i].url}" class="text-center">
             <br>
-              <input type="submit" class="btn btn-danger" value="More info about ${getResponse.animals[i].name}" />
+              <input type="submit" maxlength="15" class="btn btn-danger" value="More info about ${getResponse.animals[i].name}" />
+            </form>
+              <form action="${getResponse.animals[i].id}" class="text-center">
+            <br>
+            <input type"submit" maxlength="20" class="btn btn-white text-danger" value="⭐️ Favorite ${getResponse.animals[i].name} " />
             </form>
         </div>
       </div>
     </div>
     `);
-
   }
-
 }
 
-$('#loadMore').on("click", function(){
+$("#loadMore").on("click", function () {
   event.preventDefault();
   page++;
   fetchAnimals(pet, breed, "10020", age, page);
-  });
+});
 
-$('#loadLess').on("click", function(){
+$("#loadLess").on("click", function () {
   event.preventDefault();
   page--;
   fetchAnimals(pet, breed, "10020", age, page);
-  });
+});
 
 //error handling
 function errorHandling(response) {

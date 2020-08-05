@@ -1,65 +1,73 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 
+<section class="home-bg" style="background-image: url('images/pets.jpg');">
+  <div class="row justify-content-md-center">
+    <div class="col-sm-4">
+      {% if user_form.errors %} {% for field in user_form %} {% for error in
+      field.errors %}
+      <div class="alert alert-danger alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close"
+          >&times;
+        </a>
+        <strong>{{ error|escape }}</strong>
+      </div>
+      {% endfor %} {% for error in user_form.non_field_errors %}
+      <div class="alert alert-danger alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close"
+          >&times;
+        </a>
+        <strong>{{ error|escape }}</strong>
+      </div>
+      {% endfor %} {% endif %}
 
-
-<section class="home-bg" style="background-image: url({% static '' %})">
-	<div class="row justify-content-md-center">
-		<div class="col-sm-4">
-			{% if user_form.errors %}
-			{% for field in user_form %}
-			{% for error in field.errors %}
-			<div class="alert alert-danger alert-dismissable">
-				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				<strong>{{ error|escape }}</strong>
-			</div>
-			{% endfor %}
-			{% endfor %}
-			{% for error in user_form.non_field_errors %}
-			<div class="alert alert-danger alert-dismissable">
-				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				<strong>{{ error|escape }}</strong>
-			</div>
-			{% endfor %}
-			{% endif %}
-
-			<form method="POST"  enctype="multipart/form-data">
-				<br>
-				<br>
-				<h1>Change Profil</h1>
-				{% csrf_token %}
-				<fieldset>
-					{% for field in user_form %}
-					<div class="form-group">
-						<label for="id_{{ field.name }}">{{ field.label }}</label>
-						<input type="{{ field.field.widget.input_type }}"
-						class="form-control"
-						name="{{ field.name }}"
-						id="id_{{ field.name }}"
-						placeholder="{{ field.field.widget.attrs.placeholder }}">
-					</div>
-					{% endfor %}
-					{% for field in pet_form %}
-					<div class="form-group">
-						<label for="id_{{ field.name }}">{{ field.label }}</label>
-						<input type="{{ field.field.widget.input_type }}"
-						class="form-control"
-						name="{{ field.name }}"
-						id="id_{{ field.name }}"
-						placeholder="{{ field.field.widget.attrs.placeholder }}">
-					</div>
-					{% endfor %}
-					<br>
-					<input class="btn btn-danger" type="submit" value="Update">&nbsp; &nbsp;
-				</fieldset>
-
-			</form>
-			<br>
-		</div>
-	</div>
-
+      <form method="POST" enctype="multipart/form-data">
+        <h1>Set Pet Preferences</h1>
+        <br /><br />
+        <h3 style="color: #cb444a;">
+          Looking for the perfect pet? <br />
+          Set your criterias here, and get alerts when that pet becomes
+          available for adoption!
+        </h3>
+        <br />
+        {% csrf_token %}
+        <div class="form-group">
+          <!-- bootstrap-->
+          <label for="faf_type">Friend's Type:</label>
+          <br />
+          <select id="pet" class="form-control">
+            <option value="dog">{{ field.pet.pet_type }}</option>
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="rabbit">Rabbit</option>
+          </select>
+          <br />
+          <label for="faf_age">Friend's Age:</label>
+          <br />
+          <select id="age" class="form-control">
+            <option value="">{{ field.pet.pet_age }}</option>
+            <option value="">Optional</option>
+            <option value="baby">Baby</option>
+            <option value="young">Young</option>
+            <option value="adult">Adult</option>
+            <option value="senior">Senior</option>
+          </select>
+          <br />
+          <label for="faf_breed">Friend's Breed</label>
+          <br />
+          <input
+            type="text"
+            id="breed"
+            class="form-control"
+            value="{{ field.pet.pet_breed }}"
+          />
+          <br />
+          <input type="submit" value="Update" class="btn btn-danger" />&nbsp;
+          &nbsp;
+        </div>
+      </form>
+      <br />
+    </div>
+  </div>
 </section>
-
 
 {% endblock %}

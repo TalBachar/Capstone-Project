@@ -1,98 +1,46 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <div class="content">
-	<div class="media-body"> b   -
+  <div class="media-body">
+    b - {% for field in object_list %}
+    <center>
+      <br />
+      <br />
+      <br />
 
-		{% for field in object_list %}
-		<center>
-			<br>
-			<br>
-			<br>
+      <div class="profile-name text-center">
+        <br />
+        <h4>Welcome {{ request.user.username }}</h4>
+        <br />
+        Username: {{ request.user.username }}
+        <br />
+        Name: {{ request.user.first_name }} {{ request.user.last_name }}
+        <br />
+        Email: {{ request.user.email }}
+        <br />
+      </div>
+      {% if view.kwargs.username == user.username %}
 
-			<div class="profile-name text-center">
-				Find My Friend NYC
-				<br>
-				Welcome  {{ request.user.username }}
-				<br>
-				your personal information below
-				<br>
-				Username: {{ request.user.username }}
-				<br>
-				Name: {{ request.user.first_name }}
-				{{ request.user.last_name }}
-				<br>
-				Email:{{ request.user.email }}
-				<br>
-			</div>
-			{% if view.kwargs.username == user.username %}
-			<div class="col">
-				<form id="form">
-					<label for="title"> <h3>Personal Preferences:</h3></label>
-					<br>
+      <h1>Here we will show the user's favorites!</h1>
 
-					<div class="form-group"> <!-- bootstrap-->
-						<label for="faf_type">Friend's Type:</label>
-						<br>
-						<select id="pet" class="form-control">
-							<option value="dog">{{ field.pet.pet_type }}</option>
-							<option value="dog">Dog</option>
-							<option value="cat">Cat</option>
-							<option value="rabbit">Rabbit</option>
-						</select>
-						<br>
-						<label for="faf_age">Friend's Age:</label>
-						<br>
-						<select id="age" class="form-control">
-							<option value="">{{ field.pet.pet_age }}</option>
-							<option value="">Optional</option>
-							<option value="baby">Baby</option>
-							<option value="young">Young</option>
-							<option value="adult">Adult</option>
-							<option value="senior">Senior</option>
-						</select>
-						<br>
-						<label for="faf_breed">Friend's Breed</label>
-						<br>
-						<input type="text" id="breed" class="form-control" value="{{ field.pet.pet_breed }}">
-						<br>
-						<input type="submit" value="Search" class="btn btn-danger">
+      <a class="btn" href="{% url 'accounts:profile_update' %}">Edit Profile</a>
+      <a class="btn" href="{% url 'accounts:logout' %}">Logout</a>
 
-					</div>
-				</form>
-			</div>
-			<a class='btn' href="{% url 'accounts:profile_update' %}">Edit Profile</a>
-			<a class='btn' href="{% url 'accounts:logout' %}">Logout</a>
+      {% endif %}
+    </center>
+  </div>
 
-			{% endif %}
-		</center>
-	</div>
+  {% endfor %}
 
-	{% endfor %}
-	<section>
-		<div>
-			<h2>Search Results:</h2>
-			<div class="row justify-content-md-center">
-				<div class="col3-sm-2">
-					<button id="loadLess" type="button" class="btn btn-danger"> < </button>
-					<button id="loadMore" type="button" class="btn btn-danger"> > </button>
-				</div>
-			</div>
-			<div class="row justify-content-md-center">
-				<div class="row container" id="printApi">
-				</div>
-				<br>
-				<br>
-			</div>
-		</section>
+  <section>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'getApi.js'  %}"></script>
+    <script src="{% static 'setApi.js' %}"></script>
+  </section>
 
-		<section >
-			<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-			<script src="{% static 'getApi.js'  %}"></script>
-			<script src="{% static 'setApi.js' %}"></script>
-		</section>
-
-
-	{% endblock %}
+  {% endblock %}
+</div>
