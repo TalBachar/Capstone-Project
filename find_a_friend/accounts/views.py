@@ -28,6 +28,7 @@ def signup(request):
 @login_required
 def profile_update(request):
     if request.method == 'POST':
+        print("From if request.method is POST!")
         user_form = UserUpdateForm(request.POST, instance=request.user)
         pet_form = PetUpdateForm(request.POST,
                                          request.FILES,
@@ -38,6 +39,7 @@ def profile_update(request):
             return redirect('accounts:profile_update')
 
     else:
+        print("From else!")
         user_form = UserUpdateForm(instance=request.user)
         pet_form = PetUpdateForm(instance=request.user.pet)
 

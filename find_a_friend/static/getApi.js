@@ -19,7 +19,7 @@ function loadData() {
     pet = $("#pet").val();
     breed = $("#breed").val();
     age = $("#age").val();
-    page = 3;
+    page = 1;
     fetchAnimals(pet, breed, "10020", age, page);
   });
 }
@@ -45,6 +45,7 @@ function decodeData(getResponse) {
   $("#printApi").html("");
   ('<p class="text-center">${getResponse.animals.page}</p>');
   for (let i = 0; i < getResponse.animals.length; i++) {
+    console.log("Results:", getResponse.animals.length);
     $("#printApi ").append(`
 
       <div class="col-sm-4">
