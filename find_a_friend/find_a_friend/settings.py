@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+import django_heroku
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-	'accounts.apps.AccountsConfig',
-    #'accounts',
+    'accounts.apps.AccountsConfig',
+    # 'accounts',
     'pets',
 ]
 
@@ -81,10 +81,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'final',
-        'USER':'postgres',
-        'PASSWORD':'123',
-        'HOST':'localhost',
-        'PORT':'5432',
+        'USER': 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -95,15 +95,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
-    #{
+    # {
     #    'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    #},
-    #{
+    # },
+    # {
     #    'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    #},
-    #{
+    # },
+    # {
     #    'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    #},
+    # },
 ]
 
 
@@ -138,11 +138,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Email client
-#findafriendnyc@gmail.com
-#capstone123
+# findafriendnyc@gmail.com
+# capstone123
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = "findafriendnyc@gmail.com"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = "capstone123"
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
