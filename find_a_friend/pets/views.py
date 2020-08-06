@@ -5,12 +5,12 @@ from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
+def privacypolicy(request):
+    return render(request,'privacypolicy.html')
+
 
 def adoption(request):
     return render(request,'home.html')
-
-def privacypolicy(request):
-    return render(request,'privacypolicy.html')
 
 def favorite(request):
     favs = Fav.objects
@@ -31,6 +31,6 @@ def create(request):
 			fav.save()
 			return redirect('pets' )
 		else:
-			return render(request, 'myaccount.html',{'error':'All fields are required.'})
+			return render(request, 'home.html',{'error':'Error Nothing Added .'})
 	else:
-		return render(request, 'myaccount.html')
+		return render(request, 'home.html')

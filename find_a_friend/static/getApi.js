@@ -52,7 +52,6 @@ function decodeData(getResponse) {
     console.log("Size of array: ", getResponse.animals[i].photos.length);
     if (getResponse.animals[i].photos.length > 0) {
       $("#printApi ").append(`
-
       <div class="col-sm-4">
         <div class="card" style="width: 300px;">
         <a href="${getResponse.animals[i].url}">
@@ -65,9 +64,9 @@ function decodeData(getResponse) {
             <p class="text-center">${getResponse.animals[i].breeds.primary}</p>
             <p class="text-center">${getResponse.animals[i].gender}</p>
             <p class="text-center">${getResponse.animals[i].age}</p>
-
-			<form method="post" action="/pets/create" enctype="multipart/form-data">
 			<center>
+			<form method="post" action="/pets/create" enctype="multipart/form-data">
+
 			<input type="hidden" name="fav_name" style="text-align:center;" value = "${getResponse.animals[i].name}" />
 			<input type="hidden" name="fav_age" style="text-align:center;" value = "${getResponse.animals[i].age}" />
 			<input type="hidden" name="fav_breed" style="text-align:center;" value = "${getResponse.animals[i].breeds.primary}" />
@@ -76,14 +75,12 @@ function decodeData(getResponse) {
 			<input class="btn btn-primary" type="submit" value="Add Favorites" />
 			</form>
 			</center>
-
           </div>
         </div>
       </div>
      `);
     } else {
       $("#printApi ").append(`
-
       <div class="col-sm-4">
         <div class="card" style="width: 300px;">
         <a href="${getResponse.animals[i].url}">
@@ -96,14 +93,14 @@ function decodeData(getResponse) {
             <p class="text-center">${getResponse.animals[i].breeds.primary}</p>
             <p class="text-center">${getResponse.animals[i].gender}</p>
             <p class="text-center">${getResponse.animals[i].age}</p>
-			<form method="post" action="/pets/create" enctype="multipart/form-data">
 			<center>
+			<form method="post" action="/pets/create" enctype="multipart/form-data">
 
 			<input type="hidden" name="fav_name" style="text-align:center;" value = "${getResponse.animals[i].name}" />
 			<input type="hidden" name="fav_age" style="text-align:center;" value = "${getResponse.animals[i].age}" />
 			<input type="hidden" name="fav_breed" style="text-align:center;" value = "${getResponse.animals[i].breeds.primary}" />
 			<input type="hidden" name="fav_url" style="text-align:center;" value = "${getResponse.animals[i].url}" />
-			<input type="hidden" name="fav_image" style="text-align:center;" value = "${getResponse.animals[i].photos[0].medium}" />
+			<input type="hidden" name="fav_image" style="text-align:center;" value = "https://g.petango.com/shared/Photo-Not-Available-dog.gif" />
 			<input class="btn btn-primary" type="submit" value="Add Favorites" />
 			</form>
 			</center>
