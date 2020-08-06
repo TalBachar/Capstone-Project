@@ -2,43 +2,45 @@
 <!-- navbar -->
 <header>
 	<nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark">
-		<a class="text-light bg-dark navbar-brand offset-1" href="{%url 'pets'%}">Find A Friend NYC</a>
+		<a class="text-light bg-dark navbar-brand offset-1" href="{%url 'pets'%}">
+			<img src="../../static/images/logo.png">
+		</a>
 		<!--navbar button html css and bootrap-->
-		<button class="navbar-toggler" type="button"
-		data-toggle="collapse" data-target="#navbarCollapse"
-		aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<!--search bar html css and bootrap-->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+			aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!--search bar html css and bootrap-->
 
-	<div class="navbar-collapse collapse" id="navbarCollapse" style="">
-		<div class="container d-flex justify-content-between bg-dark">
-			<!--signup/Login/Logout html css and bootrap and js -->
-			{% if user.is_authenticated %}
+		<div class="navbar-collapse collapse" id="navbarCollapse" style="">
+			<div class="container d-flex justify-content-between bg-dark">
+				<!--signup/Login/Logout html css and bootrap and js -->
+				{% if user.is_authenticated %}
 
-			<li class="dropdown-item bg-dark">
-				<a href="{% url 'accounts:profile_update' %}" class="btn btn-light">Set Alerts</a>
-			</li>
-			<li class="dropdown-item bg-dark">
-				<a href="{% url 'accounts:myprofile' user.username %}"class="btn btn-light">My Profile</a>
-			</li>
-			<li class="dropdown-item bg-dark">
-				<a href="{% url 'accounts:logout' %}"  class="btn btn-danger">
-					<i class="fa fa-sign-out"></i> Logout
-				</a>
-				{% csrf_token %} <!--provides easy-to-use protection against Cross Site Request Forgeries-->
+				<li class="dropdown-item bg-dark">
+					<a href="{% url 'accounts:profile_update' %}" class="btn btn-light">Set Alerts</a>
+				</li>
+				<li class="dropdown-item bg-dark">
+					<a href="{% url 'accounts:myprofile' user.username %}" class="btn btn-light">My Profile</a>
+				</li>
+				<li class="dropdown-item bg-dark">
+					<a href="{% url 'accounts:logout' %}" class="btn btn-danger">
+						<i class="fa fa-sign-out"></i> Logout
+					</a>
+					{% csrf_token %}
+					<!--provides easy-to-use protection against Cross Site Request Forgeries-->
 
-			</li>
+				</li>
 
-			{% else %}
-			<span class="navbar-nav"></span>
-			<div class="navbar-nav btn-group">
-				<a href="{% url 'accounts:login' %}" class="btn btn-light">Login</a>
-				<a href="{% url 'accounts:signup' %}" class="btn btn-danger">Sign Up</a>
+				{% else %}
+				<span class="navbar-nav"></span>
+				<div class="navbar-nav btn-group">
+					<a href="{% url 'accounts:login' %}" class="btn btn-light">Login</a>
+					<a href="{% url 'accounts:signup' %}" class="btn btn-danger">Sign Up</a>
+				</div>
+				{% endif %}
+
+
 			</div>
-			{% endif %}
-
-
-		</div>
 	</nav>
 </header>
