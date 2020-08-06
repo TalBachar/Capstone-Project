@@ -9,7 +9,8 @@ class SignupForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name','last_name','username', 'email', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username',
+                  'email', 'password1', 'password2']
 
 
 class UserUpdateForm(forms.ModelForm):
@@ -20,7 +21,15 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['username', 'email']
 
 
+PET_TYPES = [
+    ('dog', 'Dog'),
+    ('cat', 'Cat'),
+    ('rabbit', 'Rabbit'),
+]
+
+
 class PetUpdateForm(forms.ModelForm):
+
     class Meta:
         model = Pet
         fields = ['pet_type', 'pet_age', 'pet_breed']

@@ -7,6 +7,7 @@ var pet;
 var breed;
 var age = 0;
 var page = 0;
+var total_count;
 
 $(function () {
   console.log(token);
@@ -44,9 +45,13 @@ function decodeData(getResponse) {
   errorHandling(getResponse);
   $("#printApi").html("");
   ('<p class="text-center">${getResponse.animals.page}</p>');
+  console.log("Total Results:", getResponse.pagination.total_count);
+  total_count = getResponse.pagination.total_count;
+
   for (let i = 0; i < getResponse.animals.length; i++) {
-    console.log("Results:", getResponse.animals.length);
-    $("#printApi ").append(`
+    console.log("Size of array: ", getResponse.animals[i].photos.length);
+    if (getResponse.animals[i].photos.length > 0) {
+      $("#printApi ").append(`
 
       <div class="col-sm-4">
         <div class="card" style="width: 300px;">
@@ -68,22 +73,52 @@ function decodeData(getResponse) {
             <br>
             <input type"submit" maxlength="20" class="btn btn-white text-danger" value="⭐️ Favorite ${getResponse.animals[i].name} " />
             </form>
+          </div>
         </div>
       </div>
-    </div>
-    `);
+     `);
+    } else {
+      $("#printApi ").append(`
+
+      <div class="col-sm-4">
+        <div class="card" style="width: 300px;">
+        <a href="${getResponse.animals[i].url}">
+          <div class="card "  style="height: 400x;">
+            <img class="card-img-top" style="height: 300px;" src="https://g.petango.com/shared/Photo-Not-Available-dog.gif">
+          </div>
+          </a>
+          <div class="card-body">
+            <h3 class="card text-center text-danger font-weight-bold ">${getResponse.animals[i].name}</h3>
+            <p class="text-center">${getResponse.animals[i].breeds.primary}</p>
+            <p class="text-center">${getResponse.animals[i].gender}</p>
+            <p class="text-center">${getResponse.animals[i].age}</p>
+            <form action="${getResponse.animals[i].url}" class="text-center">
+            <br>
+              <input type="submit" maxlength="15" class="btn btn-danger" value="More info about ${getResponse.animals[i].name}" />
+            </form>
+              <form action="${getResponse.animals[i].id}" class="text-center">
+            <br>
+            <input type"submit" maxlength="20" class="btn btn-white text-danger" value="⭐️ Favorite ${getResponse.animals[i].name} " />
+            </form>
+          </div>
+        </div>
+      </div>
+     `);
+    }
   }
 }
 
 $("#loadMore").on("click", function () {
   event.preventDefault();
   page++;
+  console.log("Page is ", page);
   fetchAnimals(pet, breed, "10020", age, page);
 });
 
 $("#loadLess").on("click", function () {
   event.preventDefault();
   page--;
+  console.log("Page is ", page);
   fetchAnimals(pet, breed, "10020", age, page);
 });
 
