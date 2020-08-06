@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'find_a_friend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'csdb',
+        'NAME': 'final',
         'USER':'postgres',
         'PASSWORD':'123',
         'HOST':'localhost',
@@ -146,5 +146,3 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = "capstone123"
-
-

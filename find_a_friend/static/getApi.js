@@ -65,14 +65,18 @@ function decodeData(getResponse) {
             <p class="text-center">${getResponse.animals[i].breeds.primary}</p>
             <p class="text-center">${getResponse.animals[i].gender}</p>
             <p class="text-center">${getResponse.animals[i].age}</p>
-            <form action="${getResponse.animals[i].url}" class="text-center">
-            <br>
-              <input type="submit" maxlength="15" class="btn btn-danger" value="More info about ${getResponse.animals[i].name}" />
-            </form>
-              <form action="${getResponse.animals[i].id}" class="text-center">
-            <br>
-            <input type"submit" maxlength="20" class="btn btn-white text-danger" value="⭐️ Favorite ${getResponse.animals[i].name} " />
-            </form>
+
+			<form method="post" action="/pets/create" enctype="multipart/form-data">
+			<center>
+			<input type="hidden" name="fav_name" style="text-align:center;" value = "${getResponse.animals[i].name}" />
+			<input type="hidden" name="fav_age" style="text-align:center;" value = "${getResponse.animals[i].age}" />
+			<input type="hidden" name="fav_breed" style="text-align:center;" value = "${getResponse.animals[i].breeds.primary}" />
+			<input type="hidden" name="fav_url" style="text-align:center;" value = "${getResponse.animals[i].url}" />
+			<input type="hidden" name="fav_image" style="text-align:center;" value = "${getResponse.animals[i].photos[0].medium}" />
+			<input class="btn btn-primary" type="submit" value="Add Favorites" />
+			</form>
+			</center>
+
           </div>
         </div>
       </div>
@@ -92,14 +96,17 @@ function decodeData(getResponse) {
             <p class="text-center">${getResponse.animals[i].breeds.primary}</p>
             <p class="text-center">${getResponse.animals[i].gender}</p>
             <p class="text-center">${getResponse.animals[i].age}</p>
-            <form action="${getResponse.animals[i].url}" class="text-center">
-            <br>
-              <input type="submit" maxlength="15" class="btn btn-danger" value="More info about ${getResponse.animals[i].name}" />
-            </form>
-              <form action="${getResponse.animals[i].id}" class="text-center">
-            <br>
-            <input type"submit" maxlength="20" class="btn btn-white text-danger" value="⭐️ Favorite ${getResponse.animals[i].name} " />
-            </form>
+			<form method="post" action="/pets/create" enctype="multipart/form-data">
+			<center>
+
+			<input type="hidden" name="fav_name" style="text-align:center;" value = "${getResponse.animals[i].name}" />
+			<input type="hidden" name="fav_age" style="text-align:center;" value = "${getResponse.animals[i].age}" />
+			<input type="hidden" name="fav_breed" style="text-align:center;" value = "${getResponse.animals[i].breeds.primary}" />
+			<input type="hidden" name="fav_url" style="text-align:center;" value = "${getResponse.animals[i].url}" />
+			<input type="hidden" name="fav_image" style="text-align:center;" value = "${getResponse.animals[i].photos[0].medium}" />
+			<input class="btn btn-primary" type="submit" value="Add Favorites" />
+			</form>
+			</center>
           </div>
         </div>
       </div>

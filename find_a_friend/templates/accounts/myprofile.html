@@ -1,53 +1,40 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-<section class="home-bg">
-  <div class="row justify-content-md-center">
-    <div class="col-sm-4">
-      <div class="content">
-        <div class="media-body">
-          {% for field in object_list %}
-          <center>
-            <br />
-            <br />
-            <br />
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="home-bg" style="background-image: url({% static 'images/pets.jpg' %})">
+	<div class="row justify-content-md-center">
+		<div class="col-sm-4">
 
-            <div class="profile-name text-center">
-              <br />
-              <h4>Welcome {{ request.user.username }}</h4>
-              <br />
-              Username: {{ request.user.username }}
-              <br />
-              Name: {{ request.user.first_name }} {{ request.user.last_name }}
-              <br />
-              Email: {{ request.user.email }}
-              <br />
-            </div>
-            {% if view.kwargs.username == user.username %}
+			{% for field in object_list %}
+			<center>
+				<br />
+				<br />
+				<br />
 
-            <h1>Here we will show the user's favorites!</h1>
+				<div class="profile-name text-center">
+					<br />
+					<h4>Welcome {{ request.user.username }}</h4>
+					<br />
+					Username: {{ request.user.username }}
+					<br />
+					Name: {{ request.user.first_name }} {{ request.user.last_name }}
+					<br />
+					Email: {{ request.user.email }}
+					<br />
+				</div>
+				{% if view.kwargs.username == user.username %}
 
-            <a class="btn" href="{% url 'accounts:profile_update' %}"
-              >Edit Profile</a
-            >
-            <a class="btn" href="{% url 'accounts:logout' %}">Logout</a>
+				<h1></h1>
 
-            {% endif %}
-          </center>
-        </div>
-      </div>
-    </div>
-  </div>
+				<a class="btn" href="{% url 'accounts:profile_update' %}"
+				>Edit Alerts</a
+				>
+				<a class="btn" href="{% url 'accounts:logout' %}">Logout</a>
+
+				{% endif %}
+			</center>
+			{% endfor %}
+		</div>
+	</div>
 </section>
-
-{% endfor %}
-
-<section>
-  <script
-    src="https://code.jquery.com/jquery-3.5.1.js"
-    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"
-  ></script>
-  <script src="{% static 'getApi.js'  %}"></script>
-  <script src="{% static 'setApi.js' %}"></script>
-</section>
-
 {% endblock %}

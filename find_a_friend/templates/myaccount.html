@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if error %}
+{{ error }}
+<br />
+<br />
+{% endif %}
+
+<h1>Create</h1>
+
+<form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
+{% csrf_token %}
+name:
+<br />
+<input type="text" name="fav_name" />
+<br />
+age:
+<br />
+<input type="textbox" name="fav_age" />
+<br />
+breed
+<br />
+<input type="textbox" name="fav_breed" />
+<br />
+
+URL:
+<br />
+<input type="text" name="fav_url" />
+<br />
+
+Image:
+<br />
+<input type="text" name="fav_image" />
+<br />
+<br />
+<input class="btn btn-primary" type="submit" value="Add Product" />
+</form>
+
+{% endblock %}

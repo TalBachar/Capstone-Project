@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="home-bg" style="background-image: url({% static 'images/pets.jpg' %})">
+	<div class="row justify-content-md-center">
+		<div class="col-sm-4">
+			<center>
+				<h1>Favorite List!</h1>
+			</center>
+			<br>
+			{% for fav in favs.all %}
+			<br>
+			<center>
+				<div class="">
+					<div class="card" style="width: 300px;">
+						
+						<div class="card "  style="height: 400x;">
+							<img class="card-img-top" style="height: 300px;" src="{{ fav.fav_image }}">
+						</div>
+
+						<div class="card-body">
+							<h3 class="card text-center text-danger font-weight-bold ">{{ fav.fav_name }}</h3>
+							<p class="text-center">{{ fav.fav_age }}</p>
+							<p class="text-center">{{ fav.fav_breed }}</p>
+							<p class="text-center"><a href="{{ fav.fav_url }}"> More Info</a></p>
+
+						</div>
+					</div>
+
+				</div>
+			</center>
+			{% endfor %}
+		</div>
+	</div>
+
+</section>
+
+{% endblock %}
